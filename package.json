@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "chroma-js": "^2.0.6",
     "react": "^16.10.2",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.10.2",

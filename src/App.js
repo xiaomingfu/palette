@@ -6,7 +6,7 @@ class App extends Component {
     return (
       <div>
         {/* pass them all in individually */}
-        <Palette {...seedColors[4]} />
+        <Palette palette={seedColors[4]} />
       </div>
     );
   }
