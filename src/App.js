@@ -5,7 +5,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Palette colorsPalette={seedColors[4]} />
+        {/* pass them all in individually */}
+        <Palette {...seedColors[4]} />
       </div>
     );
   }
