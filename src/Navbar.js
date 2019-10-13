@@ -4,15 +4,23 @@ import MenuItem from '@material-ui/core/MenuItem';
 import 'rc-slider/assets/index.css';
 import './Navbar.css';
 import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 class Navbar extends Component {
     constructor(props) {
         super(props);
-        this.state = { format: "hex" };
+        this.state = { format: "hex", open: true };
         this.handleChangeFormat = this.handleChangeFormat.bind(this);
+        this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this);
     }
     handleChangeFormat(evt) {
-        this.setState({ format: evt.target.value }, () => this.props.handleChange(evt.target.value));
+        this.setState({ format: evt.target.value, open: true }, () => this.props.handleChange(evt.target.value));
+    }
+    handleCloseSnackbar() {
+        this.setState({ open: false })
     }
     render() {
         const { level, changeLevel, } = this.props;
@@ -28,12 +36,37 @@ class Navbar extends Component {
                         <Slider defaultValue={level} min={100} max={900} step={100} onAfterChange={changeLevel} />
                     </div>
                 </div>
-                <div className="Select-container">
+                <div className="select-container">
                     <Select value={format} onChange={this.handleChangeFormat}>
                         <MenuItem value='hex'>HEX -#ffffff</MenuItem>
                         <MenuItem value='rgb'>RGB -rgb(255,255,255)</MenuItem>
                         <MenuItem value='rgba'>RGBA -rgba(255,255,255,1.0)</MenuItem>
                     </Select>
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        open={this.state.open}
+                        autoHideDuration={3000}
+                        ContentProps={{
+                            'aria-describedby': 'message-id',
+                        }}
+                        onClose={this.handleCloseSnackbar}
+                        message={<span id="message-id">Format changed to {format.toUpperCase()}</span>}
+                        action={[
+                            <IconButton
+                                key="close"
+                                aria-label="close"
+                                color="inherit"
+                                onClick={this.handleCloseSnackbar}
+                            >
+                                <CloseIcon />
+                            </IconButton>
+                        ]}
+                    >
+
+                    </Snackbar>
                 </div>
             </div>
         )
