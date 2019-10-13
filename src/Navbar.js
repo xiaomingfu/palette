@@ -7,6 +7,7 @@ import Select from '@material-ui/core/Select';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
     constructor(props) {
@@ -27,7 +28,7 @@ class Navbar extends Component {
         return (
             <div className="Navbar">
                 <div className="Navbar-logo">
-                    <a href="#">Palette</a>
+                    <Link to="/">Palette</Link>
                 </div>
                 <div className="slider-container">
                     <span>level: {level}</span>
