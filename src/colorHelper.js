@@ -26,7 +26,6 @@ function generatePalette(starterPalette) {
                 }
             )
         }
-
     }
     return newPalette;
 }
@@ -38,14 +37,9 @@ function getRange(color) {
         .hex(),
         color,
         end]
-
 }
 //get scale color
 function getScale(color, numberOfScale) {
-    return chroma.
-        scale(getRange(color))
-        .mode('lab')
-        .colors(numberOfScale)
+    return chroma.scale(getRange(color)).mode('lab').colors(numberOfScale)
 }
-
 export { generatePalette };
