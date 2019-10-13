@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import './Palette.css';
 import ColorBox from './ColorBox';
 import seedColors from './seedColors';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+
+import './Palette.css';
 class Palette extends Component {
     constructor(props) {
         super(props);
@@ -20,7 +21,10 @@ class Palette extends Component {
         ));
         return (
             <div className="Palette" >
-                <Slider defaultValue={level} min={100} max={900} step={100} onAfterChange={this.changeLevel} />
+                <div className="slider">
+                    <Slider defaultValue={level} min={100} max={900} step={100} onAfterChange={this.changeLevel} />
+                </div>
+
                 {/* Navbar goes here */}
                 {/* bouch of color boxes */}
                 <div className="Palette-colors" >
