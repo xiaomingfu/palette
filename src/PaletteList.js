@@ -8,9 +8,8 @@ class PaletteList extends Component {
             <div>
                 <MiniPalette />
                 {palettes.map(p => (
-                    <Link to={`/palette/${p.id}`}>
-                        {p.paletteName}
-                    </Link>))}
+                    <MiniPalette {...p} />))
+                }
             </div>
         )
     }
