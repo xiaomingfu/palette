@@ -27,8 +27,8 @@ const styles = {
     palettes: {
         boxSizing: "border-box",
         width: "100%",
-        disply: "grid",
-        gridTemplateColums: "repeat(3, 30%)",
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 30%)",
     },
 };
 class PaletteList extends Component {
