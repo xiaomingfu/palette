@@ -8,7 +8,15 @@
   text-transform: uppercase;
   margin-bottom: -3.5px;
 }
-.copy-btn {
+.SingleColorPalette .ColorBox {
+  height: 50%;
+}
+.ColorBox.go-back {
+  background: black;
+}
+
+.copy-btn,
+.back-btn {
   width: 100px;
   height: 30px;
   position: absolute;
@@ -24,9 +32,11 @@
   font-size: 1rem;
   text-transform: uppercase;
   border: none;
+  text-decoration: none;
+}
+.copy-btn {
   opacity: 0;
 }
-
 .ColorBox:hover .copy-btn {
   opacity: 1;
   transition: 0.5s;
