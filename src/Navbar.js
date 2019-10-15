@@ -23,7 +23,7 @@ class Navbar extends Component {
         this.setState({ open: false })
     }
     render() {
-        const { level, changeLevel, } = this.props;
+        const { level, changeLevel, showAllColor } = this.props;
         const { format } = this.state;
         return (
             <div className="Navbar">
@@ -31,10 +31,15 @@ class Navbar extends Component {
                     <Link to="/">Palette</Link>
                 </div>
                 <div className="slider-container">
-                    <span>level: {level}</span>
-                    <div className="slider">
-                        <Slider defaultValue={level} min={100} max={900} step={100} onAfterChange={changeLevel} />
-                    </div>
+                    {showAllColor && (
+                        <div>
+                            <span>level: {level}</span>
+                            <div className="slider">
+                                <Slider defaultValue={level} min={100} max={900} step={100} onAfterChange={changeLevel} />
+                            </div>
+                        </div>
+
+                    )}
                 </div>
                 <div className="select-container">
                     <Select value={format} onChange={this.handleChangeFormat}>
