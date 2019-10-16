@@ -1,4 +1,4 @@
-.ColorBox {
+/* .ColorBox {
   display: inline-block;
   width: 20%;
   height: 25%;
@@ -7,11 +7,11 @@
   cursor: pointer;
   text-transform: uppercase;
   margin-bottom: -3.5px;
-}
+} */
 /* .SingleColorPalette .ColorBox {
   height: 50%;
 } */
-.ColorBox.go-back {
+/* .ColorBox.go-back {
   background: black;
 }
 
@@ -33,7 +33,7 @@
   text-transform: uppercase;
   border: none;
   text-decoration: none;
-}
+} */
 /* .copy-btn {
   opacity: 0;
 }
