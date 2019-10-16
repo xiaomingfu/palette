@@ -117,3 +117,9 @@
   font-size: 2rem;
   font-weight: 100;
 }
+.white-color {
+  color: white;
+}
+.ColorBox .dark-color {
+  color: rgba(0, 0, 0, 0.5);
+}
