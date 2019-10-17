@@ -82,7 +82,8 @@ class NewPaletteForm extends Component {
       open: true,
       currentColor: "teal",
       colors: [],
-      newName: ""
+      newColorName: "",
+      newPaletteName: ""
     };
     this.updateCurrentColor = this.updateCurrentColor.bind(this);
     this.addNewColor = this.addNewColor.bind(this);
@@ -90,7 +91,7 @@ class NewPaletteForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentDidMount() {
-    ValidatorForm.addValidationRule("isColorNameUnique", value => {
+    ValidatorForm.addValidationRule("ColorNameUnique", value => {
       for (let color of this.state.colors) {
         if (color.name.toLowerCase() === value.toLowerCase()) {
           return false;
@@ -98,17 +99,14 @@ class NewPaletteForm extends Component {
       }
       return true;
     });
-    ValidatorForm.addValidationRule("isColorUnique", value =>
+    ValidatorForm.addValidationRule("ColorUnique", value =>
       this.state.colors.every(({ color }) => color !== this.state.currentColor)
     );
+    ValidatorForm.addValidationRule("PaletteNameUnique", value =>
+      this.props.palettes.every(palette => palette.paletteName !== value)
+    );
   }
-  // componentDidMount() {
-  //   ValidatorForm.addValidationRule("iscolorNameUnique", value =>
-  //     this.state.colors.every(
-  //       ({name}) => name.toLowerCase() !== value.toLowerCase()
-  //     )
-  //   );
-  // }
+
   handleDrawerOpen = () => {
     this.setState({ open: true });
   };
@@ -121,18 +119,21 @@ class NewPaletteForm extends Component {
   addNewColor() {
     const newColor = {
       color: this.state.currentColor,
-      name: this.state.newName
+      name: this.state.newColorName
     };
-    this.setState({ colors: [...this.state.colors, newColor], newName: "" });
+    this.setState({
+      colors: [...this.state.colors, newColor],
+      newColorName: ""
+    });
   }
   handleChange(evt) {
-    this.setState({ newName: evt.target.value });
+    this.setState({ [evt.target.name]: evt.target.value });
   }
   handleSubmit() {
-    let paletteName = "New Palette Name";
+    let newPaletteName = this.state.newPaletteName;
     const newPalette = {
-      name: paletteName,
-      id: paletteName.toLocaleLowerCase().replace(/ /g, "-"),
+      paletteName: newPaletteName,
+      id: newPaletteName.toLocaleLowerCase().replace(/ /g, "-"),
       colors: this.state.colors
     };
     this.props.savePalette(newPalette);
@@ -164,13 +165,21 @@ class NewPaletteForm extends Component {
             <Typography variant="h6" noWrap>
               Persistent drawer
             </Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.handleSubmit}
-            >
-              Save Palette
-            </Button>
+            <ValidatorForm onSubmit={this.handleSubmit}>
+              <TextValidator
+                value={this.state.newPaletteName}
+                onChange={this.handleChange}
+                name="newPaletteName"
+                validators={["required", "PaletteNameUnique"]}
+                errorMessages={[
+                  "Palette name is required",
+                  "Palette name already taken"
+                ]}
+              />
+              <Button variant="contained" color="primary" type="submit">
+                Save Palette
+              </Button>
+            </ValidatorForm>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -203,9 +212,10 @@ class NewPaletteForm extends Component {
           />
           <ValidatorForm onSubmit={this.addNewColor}>
             <TextValidator
-              value={this.state.newName}
+              value={this.state.newColorName}
+              name="newColorName"
               onChange={this.handleChange}
-              validators={["required", "isColorNameUnique", "isColorUnique"]}
+              validators={["required", "ColorNameUnique", "ColorUnique"]}
               errorMessages={[
                 "Enter a color name",
                 "color name must be unique",
