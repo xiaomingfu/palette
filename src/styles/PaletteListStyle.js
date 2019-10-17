@@ -9,15 +9,20 @@ export default {
     },
     container: {
         width: "50%",
-        disply: "flex",
+        display: "flex",
         alignItems: "flex-start",
         flexDirection: "column",
         flexWrap: "wrap",
     },
     nav: {
-        disply: "flex",
+        display: "flex",
         width: "100%",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        color: "white",
+        alignItems: "center",
+        "& a": {
+            color: "white",
+        }
     },
     palettes: {
         boxSizing: "border-box",
