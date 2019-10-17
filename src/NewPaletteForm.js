@@ -90,20 +90,24 @@ class NewPaletteForm extends Component {
   }
   componentDidMount() {
     ValidatorForm.addValidationRule("iscolorNameUnique", value => {
-      for (let color in this.state.colors) {
-        let name = color.name;
-        if (name.toLowerCase() === value.toLowerCase()) {
+      for (let color of this.state.colors) {
+        if (color.name.toLowerCase() === value.toLowerCase()) {
           return false;
         }
       }
       return true;
     });
   }
-
+  // componentDidMount() {
+  //   ValidatorForm.addValidationRule("iscolorNameUnique", value =>
+  //     this.state.colors.every(
+  //       ({name}) => name.toLowerCase() !== value.toLowerCase()
+  //     )
+  //   );
+  // }
   handleDrawerOpen = () => {
     this.setState({ open: true });
   };
-
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
