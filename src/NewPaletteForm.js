@@ -124,9 +124,6 @@ class NewPaletteForm extends Component {
     ValidatorForm.addValidationRule("ColorUnique", value =>
       this.state.colors.every(({ color }) => color !== this.state.currentColor)
     );
-    ValidatorForm.addValidationRule("PaletteNameUnique", value =>
-      this.props.palettes.every(palette => palette.paletteName !== value)
-    );
   }
 
   handleDrawerOpen = () => {
