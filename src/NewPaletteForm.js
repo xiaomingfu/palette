@@ -99,10 +99,11 @@ class NewPaletteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: true,
+      drawerOpen: true,
       currentColor: "teal",
       colors: this.props.palettes[0].colors,
-      newColorName: ""
+      newColorName: "",
+      paletteOpen: true
     };
 
     this.addNewColor = this.addNewColor.bind(this);
@@ -127,12 +128,15 @@ class NewPaletteForm extends Component {
   }
 
   handleDrawerOpen = () => {
-    this.setState({ open: true });
+    this.setState({ drawerOpen: true });
   };
   handleDrawerClose = () => {
-    this.setState({ open: false });
+    this.setState({ drawerOpen: false });
   };
 
+  handlePaletteClose = () => {
+    this.setState({ paletteOpen: false });
+  };
   addNewColor(newColor) {
     this.setState({
       colors: [...this.state.colors, newColor],
@@ -173,21 +177,22 @@ class NewPaletteForm extends Component {
 
   render() {
     const { classes, maxColors, palettes } = this.props;
-    const { open, colors } = this.state;
+    const { drawerOpen, colors, paletteOpen } = this.state;
     const paletteFull = colors.length >= maxColors;
     return (
       <div className={classes.root}>
         <NewPaletteFormNav
           palettes={palettes}
-          open={open}
+          open={paletteOpen}
           handleSubmit={this.handleSubmit}
           handleDrawerOpen={this.handleDrawerOpen}
+          handlePaletteClose={this.handlePaletteClose}
         />
         <Drawer
           className={classes.drawer}
           variant="persistent"
           anchor="left"
-          open={open}
+          open={drawerOpen}
           classes={{
             paper: classes.drawerPaper
           }}
@@ -230,7 +235,7 @@ class NewPaletteForm extends Component {
         </Drawer>
         <main
           className={clsx(classes.content, {
-            [classes.contentShift]: open
+            [classes.contentShift]: drawerOpen
           })}
         >
           <div className={classes.drawerHeader} />
