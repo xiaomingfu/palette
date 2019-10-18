@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NewPaletteFormNav from "./NewPaletteFormNav";
+import ColorPickerForm from "./ColorPickerForm";
 import clsx from "clsx";
 import { withStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -84,7 +85,7 @@ class NewPaletteForm extends Component {
       colors: this.props.palettes[0].colors,
       newColorName: ""
     };
-    this.updateCurrentColor = this.updateCurrentColor.bind(this);
+
     this.addNewColor = this.addNewColor.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -115,14 +116,8 @@ class NewPaletteForm extends Component {
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
-  updateCurrentColor(newColor) {
-    this.setState({ currentColor: newColor.hex });
-  }
-  addNewColor() {
-    const newColor = {
-      color: this.state.currentColor,
-      name: this.state.newColorName
-    };
+
+  addNewColor(newColor) {
     this.setState({
       colors: [...this.state.colors, newColor],
       newColorName: ""
@@ -206,32 +201,11 @@ class NewPaletteForm extends Component {
               Random Color
             </Button>
           </div>
-          <ChromePicker
-            color={this.state.currentColor}
-            onChangeComplete={this.updateCurrentColor}
+          <ColorPickerForm
+            paletteFull={paletteFull}
+            addNewColor={this.addNewColor}
+            colors={colors}
           />
-          <ValidatorForm onSubmit={this.addNewColor}>
-            <TextValidator
-              value={this.state.newColorName}
-              name="newColorName"
-              onChange={this.handleChange}
-              validators={["required", "ColorNameUnique", "ColorUnique"]}
-              errorMessages={[
-                "Enter a color name",
-                "color name must be unique",
-                "Color must be unique"
-              ]}
-            />
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              disabled={paletteFull}
-              style={{ backgroundColor: this.state.currentColor }}
-            >
-              {paletteFull ? "Palette Full" : "Add Color"}
-            </Button>
-          </ValidatorForm>
         </Drawer>
         <main
           className={clsx(classes.content, {
