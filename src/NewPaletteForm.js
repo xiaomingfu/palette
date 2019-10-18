@@ -55,6 +55,9 @@ const styles = theme => ({
     ...theme.mixins.toolbar,
     justifyContent: "flex-end"
   },
+  hide: {
+    display: "none"
+  },
   content: {
     flexGrow: 1,
     height: "calc(100vh - 64px)",
@@ -163,7 +166,6 @@ class NewPaletteForm extends Component {
       <div className={classes.root}>
         <NewPaletteFormNav
           palettes={palettes}
-          classes={classes}
           open={open}
           handleSubmit={this.handleSubmit}
           handleDrawerOpen={this.handleDrawerOpen}
