@@ -9,7 +9,8 @@ const styles = {
     height: "25%",
     margin: "0 auto",
     position: "relative",
-    cursor: "pointer"
+    cursor: "pointer",
+    marginBottom: "-3.8px"
   },
   boxContent: {
     position: "absolute",
