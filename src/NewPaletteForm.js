@@ -75,8 +75,10 @@ const styles = theme => ({
     marginLeft: 0
   }
 });
-
 class NewPaletteForm extends Component {
+  static defaultProps = {
+    maxColors: 20
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -162,9 +164,11 @@ class NewPaletteForm extends Component {
     const random = Math.floor(Math.random() * allColor.length);
     this.setState({ colors: [...this.state.colors, allColor[random]] });
   }
+
   render() {
-    const { classes } = this.props;
-    const { open } = this.state;
+    const { classes, maxColors } = this.props;
+    const { open, colors } = this.state;
+    const paletteFull = colors.length >= maxColors;
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -257,9 +261,10 @@ class NewPaletteForm extends Component {
               type="submit"
               variant="contained"
               color="primary"
+              disabled={paletteFull}
               style={{ backgroundColor: this.state.currentColor }}
             >
-              Add Color
+              {paletteFull ? "Palette Full" : "Add Color"}
             </Button>
           </ValidatorForm>
         </Drawer>
