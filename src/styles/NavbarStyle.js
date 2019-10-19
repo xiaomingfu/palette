@@ -1,9 +1,10 @@
+import sizes from "./sizes";
 export default {
   Navbar: {
     display: "flex",
     height: "6vh",
-    alignItems: "flexcenter",
-    justifyContent: "flex - start"
+    alignItems: "center",
+    justifyContent: "flex-start"
   },
   NavbarLogo: {
     marginRight: "15px",
@@ -37,6 +38,9 @@ export default {
       width: "13px",
       height: "13px",
       marginTop: "-3px"
+    },
+    [sizes.down("md")]: {
+      width: "150px"
     }
   },
   selectContainer: {
