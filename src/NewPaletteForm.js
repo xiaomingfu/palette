@@ -97,6 +97,7 @@ class NewPaletteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      newPaletteName: "",
       open: true,
       currentColor: "teal",
       colors: this.props.palettes[0].colors,
@@ -127,12 +128,11 @@ class NewPaletteForm extends Component {
   handleChange(evt) {
     this.setState({ [evt.target.name]: evt.target.value });
   }
-  handleSubmit(newPaletteName) {
-    const newPalette = {
-      paletteName: newPaletteName,
-      id: newPaletteName.toLocaleLowerCase().replace(/ /g, "-"),
-      colors: this.state.colors
-    };
+  handleSubmit(newPalette) {
+    newPalette.id = newPalette.paletteName
+      .toLocaleLowerCase()
+      .replace(/ /g, "-");
+    newPalette.colors = this.state.colors;
     this.props.savePalette(newPalette);
     this.props.history.push("/");
   }

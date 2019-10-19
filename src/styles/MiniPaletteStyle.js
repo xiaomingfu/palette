@@ -30,13 +30,13 @@ export default {
     margin: "0",
     paddingTop: "0.6rem",
     display: "flex",
-    justifyConent: "space-between",
+    justifyContent: "space-between",
     alignItems: "center",
     fontSize: "1rem",
-    position: "ralative"
+    position: "relative"
   },
   emoji: {
-    marginLeft: "0.5rem",
+    marginRight: "0.5rem",
     fontSize: "1.5rem"
   }
 };

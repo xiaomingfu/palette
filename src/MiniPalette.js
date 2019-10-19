@@ -12,13 +12,11 @@ function MiniPalette(props) {
     ></div>
   ));
   return (
-    <div>
-      <div className={classes.root} onClick={props.handleClick}>
-        <div className={classes.colors}>{miniColorBoxes}</div>
-        <h5 className={classes.title}>
-          {paletteName}
-          <span className={classes.emoji}>{emoji}</span>
-        </h5>
+    <div className={classes.root} onClick={props.handleClick}>
+      <div className={classes.colors}>{miniColorBoxes}</div>
+      <div className={classes.title}>
+        <h5>{paletteName}</h5>
+        <span className={classes.emoji}>{emoji}</span>
       </div>
     </div>
   );
