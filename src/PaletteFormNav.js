@@ -54,13 +54,12 @@ class NewPaletteFormNav extends Component {
               onClick={handleDrawerOpen}
               className={clsx(classes.menuButton, { [classes.hide]: open })}
             >
-              <ChevronRightIcon />
+              <AddToPhotoIcon />
             </IconButton>
             <Typography variant="h6" noWrap color="inherit">
               Create A palette
             </Typography>
           </Toolbar>
-
           <div className={classes.navbtns}>
             <Link to="/">
               <Button
