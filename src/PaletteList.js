@@ -8,7 +8,7 @@ class PaletteList extends Component {
     this.props.history.push(`/palette/${id}`);
   }
   render() {
-    const { palettes, classes } = this.props;
+    const { palettes, classes, deletePalette } = this.props;
 
     return (
       <div className={classes.root}>
@@ -18,11 +18,13 @@ class PaletteList extends Component {
             <Link to="/palette/new">create new palette</Link>
           </nav>
           <div className={classes.palettes}>
-            {palettes.map((p, idx) => (
+            {palettes.map(p => (
               <MiniPalette
                 {...p}
-                key={idx}
+                key={p.id}
+                id={p.id}
                 handleClick={() => this.goToPalette(p.id)}
+                handleDelete={deletePalette}
               />
             ))}
           </div>
