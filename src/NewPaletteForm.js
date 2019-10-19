@@ -8,10 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import { ChromePicker } from "react-color";
 import Button from "@material-ui/core/Button";
 
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import DraggableColorList from "./DraggableColorList";
 import { arrayMove } from "react-sortable-hoc";
 
@@ -99,11 +97,10 @@ class NewPaletteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      drawerOpen: true,
+      open: true,
       currentColor: "teal",
       colors: this.props.palettes[0].colors,
-      newColorName: "",
-      paletteOpen: true
+      newColorName: ""
     };
 
     this.addNewColor = this.addNewColor.bind(this);
@@ -113,30 +110,14 @@ class NewPaletteForm extends Component {
     this.clearPalette = this.clearPalette.bind(this);
     this.addRandomColor = this.addRandomColor.bind(this);
   }
-  componentDidMount() {
-    ValidatorForm.addValidationRule("ColorNameUnique", value => {
-      for (let color of this.state.colors) {
-        if (color.name.toLowerCase() === value.toLowerCase()) {
-          return false;
-        }
-      }
-      return true;
-    });
-    ValidatorForm.addValidationRule("ColorUnique", value =>
-      this.state.colors.every(({ color }) => color !== this.state.currentColor)
-    );
-  }
 
   handleDrawerOpen = () => {
-    this.setState({ drawerOpen: true });
+    this.setState({ open: true });
   };
   handleDrawerClose = () => {
-    this.setState({ drawerOpen: false });
+    this.setState({ open: false });
   };
 
-  handlePaletteClose = () => {
-    this.setState({ paletteOpen: false });
-  };
   addNewColor(newColor) {
     this.setState({
       colors: [...this.state.colors, newColor],
@@ -177,13 +158,12 @@ class NewPaletteForm extends Component {
 
   render() {
     const { classes, maxColors, palettes } = this.props;
-    const { drawerOpen, colors, paletteOpen } = this.state;
+    const { open, colors } = this.state;
     const paletteFull = colors.length >= maxColors;
     return (
       <div className={classes.root}>
         <NewPaletteFormNav
           palettes={palettes}
-          open={paletteOpen}
           handleSubmit={this.handleSubmit}
           handleDrawerOpen={this.handleDrawerOpen}
           handlePaletteClose={this.handlePaletteClose}
@@ -192,7 +172,7 @@ class NewPaletteForm extends Component {
           className={classes.drawer}
           variant="persistent"
           anchor="left"
-          open={drawerOpen}
+          open={open}
           classes={{
             paper: classes.drawerPaper
           }}
@@ -235,7 +215,7 @@ class NewPaletteForm extends Component {
         </Drawer>
         <main
           className={clsx(classes.content, {
-            [classes.contentShift]: drawerOpen
+            [classes.contentShift]: open
           })}
         >
           <div className={classes.drawerHeader} />
