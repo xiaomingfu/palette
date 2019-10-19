@@ -6,6 +6,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
+import AddToPhotoIcon from "@material-ui/icons/AddToPhotos";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
 
@@ -45,20 +47,20 @@ class NewPaletteFormNav extends Component {
             [classes.appBarShift]: open
           })}
         >
-          <Toolbar>
+          <Toolbar disableGutters={!open}>
             <IconButton
               color="inherit"
               aria-label="open drawer"
               onClick={handleDrawerOpen}
-              edge="start"
-              className={clsx(classes.menuButton, open && classes.hide)}
+              className={clsx(classes.menuButton, { [classes.hide]: open })}
             >
-              <MenuIcon />
+              <ChevronRightIcon />
             </IconButton>
-            <Typography variant="h6" noWrap>
+            <Typography variant="h6" noWrap color="inherit">
               Create A palette
             </Typography>
           </Toolbar>
+
           <div className={classes.navbtns}>
             <Link to="/">
               <Button
