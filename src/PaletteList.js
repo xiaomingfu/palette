@@ -12,9 +12,10 @@ import CheckIcon from "@material-ui/icons/Check";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { blue } from "@material-ui/core/colors";
 import { red } from "@material-ui/core/colors";
-import styles from "./styles/PaletteListStyle.js";
-import MiniPalette from "./MiniPalette";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import MiniPalette from "./MiniPalette";
+import styles from "./styles/PaletteListStyle.js";
+
 class PaletteList extends Component {
   constructor(props) {
     super(props);
