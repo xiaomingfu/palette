@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import Palette from "./Palette";
-import palettes from "./seedColors";
+import seeds from "./seedColors";
 import { generatePalette } from "./colorHelper";
 import PaletteList from "./PaletteList";
 import SingleColorPalette from "./SingleColorPalette";
@@ -10,7 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     const savePalettes = JSON.parse(window.localStorage.getItem("palettes"));
-    this.state = { palettes: savePalettes || palettes };
+    this.state = { palettes: savePalettes || seeds };
     this.savePalette = this.savePalette.bind(this);
     this.findPalette = this.findPalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
