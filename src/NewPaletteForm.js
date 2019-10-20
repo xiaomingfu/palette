@@ -24,7 +24,7 @@ class NewPaletteForm extends Component {
       newPaletteName: "",
       open: true,
       currentColor: "teal",
-      colors: [this.props.palettes[0].colors],
+      colors: this.props.palettes[0].colors,
       newColorName: ""
     };
 
@@ -146,7 +146,7 @@ class NewPaletteForm extends Component {
           <div className={classes.drawerHeader} />
           <DraggableColorList
             onSortEnd={this.onSortEnd}
-            colors={this.state.colors}
+            colors={colors}
             removeColor={this.removeColor}
             axis="xy"
           />
