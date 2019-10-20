@@ -79,12 +79,11 @@ class NewPaletteForm extends Component {
     let random;
     let randomColor;
     let isDuplicateColor = true;
+    const callback = color => color.name === randomColor.name;
     while (isDuplicateColor) {
       random = Math.floor(Math.random() * allColor.length);
       randomColor = allColor[random];
-      isDuplicateColor = this.state.colors.some(
-        color => color.name === randomColor.name
-      );
+      isDuplicateColor = this.state.colors.some(callback);
     }
     this.setState({ colors: [...this.state.colors, randomColor] });
   }
