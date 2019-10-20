@@ -8,7 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import { arrayMove } from "react-sortable-hoc";
-
+import seedColors from "./seedColors";
 import PaletteFormNav from "./PaletteFormNav";
 import ColorPickerForm from "./ColorPickerForm";
 import DraggableColorList from "./DraggableColorList";
@@ -24,8 +24,7 @@ class NewPaletteForm extends Component {
       newPaletteName: "",
       open: true,
       currentColor: "teal",
-      colors:
-        this.props.palettes.length > 0 ? this.props.palettes[0].colors : [],
+      colors: seedColors[0].colors,
       newColorName: ""
     };
 
