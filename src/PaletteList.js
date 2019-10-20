@@ -48,7 +48,7 @@ class PaletteList extends Component {
           </nav>
           <TransitionGroup className={classes.palettes}>
             {palettes.map(p => (
-              <CSSTransition key={p.id} classNames="fade" timeout={800}>
+              <CSSTransition key={p.id} classNames="fade" timeout={500}>
                 <MiniPalette
                   {...p}
                   key={p.id}
